@@ -11,7 +11,6 @@ import java.util.List;
 /**
  * A standalone program that ranks a list of players in order by total level
  * 
- * TODO handle 404 errors and other responses
  * 
  * @author Dylan Weaver
  *
