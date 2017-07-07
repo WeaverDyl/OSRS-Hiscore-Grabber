@@ -42,4 +42,4 @@ To begin, update the *playersList* in the *Utility* class with all of the player
 Then, run the *ClanHiscores* class, and a sorted list of players will appear, ranked by total level, and then total experience if two people's total level is the same.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
