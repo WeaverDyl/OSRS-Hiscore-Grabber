@@ -33,7 +33,7 @@ public class Player implements Comparable<Player> {
 	 * 
 	 * @param other The other player that is being compared
 	 * @return i "1" if the current player's level is greater than the other
-	 * 			 player's OR both players have equal levels and the current player's
+	 * 	     player's OR both players have equal levels and the current player's
 	 *           experience is greater than the other player's
 	 * 
 	 *           "-1" if the other player's level is greater than the current player's
