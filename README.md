@@ -5,7 +5,7 @@
 This is a program serving two main purposes, Both of which deal with the hiscore system of the game known as "Old School RuneScape".
 
 1. This program can be used to track the progress of a number of people in a certain skill. This is useful for clan skilling events or similar activities.
-2. This program can be used to compile the overall ranking of the same number of people, listing them by overall level and experience
+2. This program can be used to compile the overall ranking of the same number of people, listing them by overall level and experience.
 
 ## WHY THIS EXISTS
 
