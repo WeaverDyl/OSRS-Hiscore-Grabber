@@ -78,7 +78,7 @@ public class ClanHiscores {
 					e.printStackTrace();
 				}
 			}
-			// Sort the list by level and experience using the Player's compareTo method
+			// Sort the list by level and experience using Player's compareTo method
 			Collections.sort(players, Collections.reverseOrder());
 			// We exited the loop, so we're done!
 			System.out.println("\nDONE\n");
