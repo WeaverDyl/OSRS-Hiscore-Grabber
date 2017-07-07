@@ -64,8 +64,7 @@ public class CalculateGains {
 	 * into an array. Those two arrays are then sorted and printed out in descending order in
 	 * a readable format
 	 * 
-	 * @throws ArraySizeUnequalException Thrown when Utility.playersList and experienceGained or 
-	 * 									 levelsGained are not the same length
+	 * @throws ArraySizeUnequalException Thrown when Utility.playersList and experienceGained or levelsGained are not the same length
 	 */
 	private static void printGainedExperience() throws ArraySizeUnequalException {
 		calculateTotalGains(experienceForPlayerBegin, experienceForPlayerEnd, experienceGained);
