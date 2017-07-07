@@ -11,10 +11,6 @@ import java.util.List;
 /**
  * Grabs data about a user specified skill for a list of players
  * 
- * TODO threading
- * TODO handle 404 errors for if player doesnt exist or if runner has no connection
- * TODO gui
- * 
  * @author Dylan Weaver
  * 
  */
