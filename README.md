@@ -16,7 +16,7 @@ This program was created so that holding clan events in Old School RuneScape wou
 #### TO USE THE SKILL GRABBER:
 To begin, update the playersList in the Utility class with all of the players you want to track.
 
-In the Grabber class, call runGrabber("skill") where *skill* is any valid skill name, all of which are located in *Utility.SKILL_NAMES*.
+In the Grabber class, call <runGrabber("skill")> where *skill* is any valid skill name, all of which are located in *Utility.SKILL_NAMES*.
 
 This will print experience and level data in an array format, ready to be copy and pasted directly into an array in the
 CalculateGains class.
