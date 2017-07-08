@@ -12,7 +12,7 @@ public class PlayerExperienceGainComparator implements Comparator<Player> {
 
 	@Override
 	public int compare(Player p1, Player p2) {
-		return p1.experience < p2.experience ? -1 : p1.experience == p1.experience ? 0 : 1;
+		return p1.getExperience() < p2.getExperience() ? -1 : p1.getExperience() > p2.getExperience() ? 1 : 0;
 	}
 
 }

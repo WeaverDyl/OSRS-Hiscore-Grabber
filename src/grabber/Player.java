@@ -10,10 +10,10 @@ import java.text.NumberFormat;
  *
  */
 public class Player implements Comparable<Player> {
-	String name; // Represents a players username
-	int level; // Represents a players level
-	int experience; // Represents a players experience
-	int i; // Used as a return for the compareTo method
+	private String name; // Represents a players username
+	private int level; // Represents a players level
+	private int experience; // Represents a players experience
+	private int i; // Used as a return for the compareTo method
 
 	/**
 	 * A constructor representing a player
@@ -55,6 +55,18 @@ public class Player implements Comparable<Player> {
 			}
 		}
 		return i;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public int getLevel() {
+		return level;
+	}
+	
+	public int getExperience() {
+		return experience;
 	}
 
 	/**

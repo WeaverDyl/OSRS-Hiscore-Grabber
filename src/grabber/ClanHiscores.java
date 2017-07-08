@@ -53,6 +53,7 @@ public class ClanHiscores {
 			in.close();
 			return true;
 		} catch (HTTPException e) {
+			// If we 404, add it to the list of player errors and print a note about it
 			if (e.getStatusCode() == 404) {
 				playerErrors.add(Utility.playersList[position]);
 				System.out.println(

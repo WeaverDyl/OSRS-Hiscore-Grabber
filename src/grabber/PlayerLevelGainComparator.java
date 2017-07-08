@@ -12,7 +12,7 @@ public class PlayerLevelGainComparator implements Comparator<Player> {
 	
 	@Override
 	public int compare(Player p1, Player p2) {
-		return p1.level < p2.level ? -1 : p1.level == p1.level ? 0 : 1;
+		return p1.getLevel() < p2.getLevel() ? -1 : p1.getLevel() > p2.getLevel() ? 1 : 0;
 	}
 
 }

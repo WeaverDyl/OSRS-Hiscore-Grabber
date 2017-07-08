@@ -55,6 +55,7 @@ public class Grabber extends Thread {
 			in.close();
 			return true;
 		} catch (HTTPException e) {
+			// If we 404, add it to the list of player errors and print a note about it
 			if (e.getStatusCode() == 404) {
 				playerErrors.add(Utility.playersList[position]);
 				System.out.println("404 returned for: " + "\"" + Utility.playersList[position] + "\""
@@ -114,7 +115,7 @@ public class Grabber extends Thread {
 	 */
 	private static void printExperience() {
 		for (int i = 0; i < players.size(); i++) {
-			System.out.print(players.get(i).experience + (i < players.size() - 1 ? ", " : ""));
+			System.out.print(players.get(i).getExperience() + (i < players.size() - 1 ? ", " : ""));
 			counter++;
 			// Print on a new line every 10 data points
 			if (counter % 10 == 0) {
@@ -130,7 +131,7 @@ public class Grabber extends Thread {
 	 */
 	private static void printLevel() {
 		for (int i = 0; i < players.size(); i++) {
-			System.out.print(players.get(i).level + (i < players.size() - 1 ? ", " : ""));
+			System.out.print(players.get(i).getLevel() + (i < players.size() - 1 ? ", " : ""));
 			counter++;
 			// Print on a new line every 10 data points
 			if (counter % 10 == 0) {

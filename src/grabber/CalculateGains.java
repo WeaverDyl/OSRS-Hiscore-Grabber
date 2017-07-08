@@ -86,8 +86,8 @@ public class CalculateGains {
 			Collections.sort(playerGains, new PlayerExperienceGainComparator().reversed());
 			for (Player list : playerGains) {
 				System.out.println(experiencePosition + Utility.getPositionSuffix(experiencePosition) + "\""
-						+ list.name.replace(" ", "_") + "\"" + " with: "
-						+ NumberFormat.getInstance().format(list.experience) + " experience.");
+						+ list.getName().replace(" ", "_") + "\"" + " with: "
+						+ NumberFormat.getInstance().format(list.getExperience()) + " experience.");
 				// Iterate the position to maintain correct rankings
 				experiencePosition++;
 			}
@@ -97,7 +97,7 @@ public class CalculateGains {
 			Collections.sort(playerGains, new PlayerLevelGainComparator().reversed());
 			for (Player list : playerGains) {
 				System.out.println(levelPosition + Utility.getPositionSuffix(levelPosition) + "\""
-						+ list.name.replace(" ", "_") + "\"" + " with: " + list.level + " levels.");
+						+ list.getName().replace(" ", "_") + "\"" + " with: " + list.getLevel() + " levels.");
 				// Iterate the position to maintain correct rankings
 				levelPosition++;
 			}

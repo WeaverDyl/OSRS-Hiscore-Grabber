@@ -14,7 +14,7 @@ public final class Utility {
 			"herblore", "agility", "thieving", "slayer", "farming", "runecrafting", "hunter", "construction" };
 
 	// An array of every player in the clan
-	static final String[] playersList = { "ninja tutrle", "1488", "karambjohn", "nosteponsnek", "daft blunt", "rackle",
+	static final String[] playersList = {"1488", "karambjohn", "nosteponsnek", "daft blunt", "rackle",
 			"uim pwc", "timeofgrace", "yeetbihh", "pure impure", "shakenspear", "holly spring", "im speshl", "texman",
 			"toti594", "ludena", "layor trop", "figarothecat", "whiplash796", "picleboii", "bonghits", "itdoesnt",
 			"the alomais", "dragonsfury", "tjommyt", "luch", "clint  3", "lostatonce", "sirartorian", "powbong",
