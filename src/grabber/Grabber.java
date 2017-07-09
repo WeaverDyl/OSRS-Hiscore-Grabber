@@ -27,10 +27,8 @@ public class Grabber extends Thread {
 	 * For the given position, connect to the hiscores page for the username and
 	 * read the data
 	 * 
-	 * @param skill
-	 *            The skill that we are collecting data for
-	 * @param position
-	 *            The current index of the array
+	 * @param skill The skill that we are collecting data for
+	 * @param position The current index of the array
 	 */
 	private static boolean connect(String skill, int position) {
 		// Connect to the hiscores using the username found at the position index of
@@ -71,11 +69,10 @@ public class Grabber extends Thread {
 
 	/**
 	 * Connects to the OSRS hiscores for each player, grabbing data for each member
-	 * in the <CODE>Utility.playersList</CODE> array, and storing that in
-	 * <CODE>players</CODE>
+	 * in the {@code Utility.playersList} array, and storing that in
+	 * {@code players}
 	 * 
-	 * @param skill
-	 *            The skill to collect data for
+	 * @param skill The skill to collect data for
 	 */
 	private static void runGrabber(String skill) {
 		// Only continue if skill exists in the Utility.SKILL_NAMES array
@@ -143,10 +140,9 @@ public class Grabber extends Thread {
 	}
 
 	/**
-	 * Checks that <CODE>skill</CODE> is in <CODE>Utility.SKILL_NAMES</CODE>
+	 * Checks that {@code skill} is in {@code Utility.SKILL_NAMES}
 	 * 
-	 * @param str
-	 *            The string to check against SKILL_NAMES
+	 * @param str The string to check against SKILL_NAMES
 	 */
 	static boolean checkForValidSkill(String str) {
 		for (int i = 0; i < Utility.SKILL_NAMES.length; i++) {

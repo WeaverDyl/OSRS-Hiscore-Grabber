@@ -46,11 +46,12 @@ public class CalculateGains {
 	 * @param beginning An array containing beginning values
 	 * @param end An array containing ending values
 	 * @param destination The array to put the difference of beginning and end into
-	 * @throws ArraySizeUnequalException Thrown when the length of beginning and end are not the same
+	 * @throws ArraySizeUnequalException Thrown when the length of {@code beginning}, {@code end}, 
+	 * 									 and {@code Utility.playersList} are not the same length
 	 */
 	private static void calculateTotalGains(Integer[] beginning, Integer[] end, Integer[] destination)
 			throws ArraySizeUnequalException {
-		if (beginning.length == end.length) {
+		if (Utility.areSameLength(Utility.playersList, beginning, end)) {
 			for (int i = 0; i < end.length; i++) {
 				destination[i] = end[i] - beginning[i];
 			}
@@ -64,46 +65,41 @@ public class CalculateGains {
 	 * into an array. Those two arrays are then sorted and printed out in descending order in
 	 * a readable format
 	 * 
-	 * @throws ArraySizeUnequalException Thrown when Utility.playersList and experienceGained or levelsGained are not the same length
+	 * @throws ArraySizeUnequalException Thrown when Utility.playersList and experienceGained or 
+	 * 								     levelsGained are not the same length
 	 */
 	private static void printGainedExperience() throws ArraySizeUnequalException {
 		calculateTotalGains(experienceForPlayerBegin, experienceForPlayerEnd, experienceGained);
 		calculateTotalGains(levelForPlayerBegin, levelForPlayerEnd, levelsGained);
+		
+		System.out.println("CLAN EVENT");
+		System.out.println("Total gains from every member: ");
 
-		if ((Utility.playersList.length == experienceGained.length)
-				&& (Utility.playersList.length == levelsGained.length)) {
-			System.out.println("CLAN EVENT");
-			System.out.println("Total gains from every member: ");
+		// Go through the playerList, creating a new Player object for each player in the array
+		for (int i = 0; i < Utility.playersList.length; i++) {
+			Player p = new Player(Utility.playersList[i], levelsGained[i], experienceGained[i]);
+			playerGains.add(p);
+		}
 
-			// Go through the playerList, creating a new Player object for each player in the array
-			for (int i = 0; i < Utility.playersList.length; i++) {
-				Player p = new Player(Utility.playersList[i], levelsGained[i], experienceGained[i]);
-				playerGains.add(p);
-			}
+		// Sort and print experience gains and print this information out
+		System.out.println("----\nExperience Gains");
+		Collections.sort(playerGains, new PlayerExperienceGainComparator().reversed());
+		for (Player list : playerGains) {
+			System.out.println(experiencePosition + Utility.getPositionSuffix(experiencePosition) + "\""
+					+ list.getName().replace(" ", "_") + "\"" + " with: "
+					+ NumberFormat.getInstance().format(list.getExperience()) + " experience.");
+			// Iterate the position to maintain correct rankings
+			experiencePosition++;
+		}
 
-			// Sort and print experience gains and print this information out
-			System.out.println("----\nExperience Gains");
-			Collections.sort(playerGains, new PlayerExperienceGainComparator().reversed());
-			for (Player list : playerGains) {
-				System.out.println(experiencePosition + Utility.getPositionSuffix(experiencePosition) + "\""
-						+ list.getName().replace(" ", "_") + "\"" + " with: "
-						+ NumberFormat.getInstance().format(list.getExperience()) + " experience.");
-				// Iterate the position to maintain correct rankings
-				experiencePosition++;
-			}
-
-			// Sort and print level gains and print this information out
-			System.out.println("----\nLevel Gains");
-			Collections.sort(playerGains, new PlayerLevelGainComparator().reversed());
-			for (Player list : playerGains) {
-				System.out.println(levelPosition + Utility.getPositionSuffix(levelPosition) + "\""
-						+ list.getName().replace(" ", "_") + "\"" + " with: " + list.getLevel() + " levels.");
-				// Iterate the position to maintain correct rankings
-				levelPosition++;
-			}
-		} else {
-			throw new ArraySizeUnequalException(
-					"Error, the array of names is not the same length as the array of experience gained");
+		// Sort and print level gains and print this information out
+		System.out.println("----\nLevel Gains");
+		Collections.sort(playerGains, new PlayerLevelGainComparator().reversed());
+		for (Player list : playerGains) {
+			System.out.println(levelPosition + Utility.getPositionSuffix(levelPosition) + "\""
+					+ list.getName().replace(" ", "_") + "\"" + " with: " + list.getLevel() + " levels.");
+			// Iterate the position to maintain correct rankings
+			levelPosition++;
 		}
 	}
 

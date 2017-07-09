@@ -3,8 +3,8 @@ package grabber;
 import java.text.NumberFormat;
 
 /**
- * A class to represent a player.
- * A player has a username, an experience, and a level
+ * A class to represent a player. A player has a username, an experience, and a
+ * level
  * 
  * @author Dylan Weaver
  *
@@ -33,14 +33,14 @@ public class Player implements Comparable<Player> {
 	 * 
 	 * @param other The other player that is being compared
 	 * @return i "1" if the current player's level is greater than the other
-	 * 	     player's OR both players have equal levels and the current player's
-	 *           experience is greater than the other player's
+	 *         	  player's OR both players have equal levels and the current player's
+	 *            experience is greater than the other player's
 	 * 
-	 *           "-1" if the other player's level is greater than the current player's
-	 *           OR both players have equal levels and the other player's experience
-	 *           is greater than the current player's
+	 *         	  "-1" if the other player's level is greater than the current player's
+	 *            OR both players have equal levels and the other player's experience
+	 *            is greater than the current player's
 	 * 
-	 *           "0" if both players have the same level AND the same experience
+	 *            "0" if both players have the same level AND the same experience
 	 */
 	public int compareTo(Player other) {
 		if (this.level > other.level) {
@@ -56,15 +56,24 @@ public class Player implements Comparable<Player> {
 		}
 		return i;
 	}
-	
+
+	/**
+	 * @return The player's name
+	 */
 	public String getName() {
 		return name;
 	}
-	
+
+	/**
+	 * @return The player's level
+	 */
 	public int getLevel() {
 		return level;
 	}
-	
+
+	/**
+	 * @return The player's experience
+	 */
 	public int getExperience() {
 		return experience;
 	}
@@ -73,6 +82,7 @@ public class Player implements Comparable<Player> {
 	 * Represents a player as a string.
 	 */
 	public String toString() {
-		return "\"" + name + "\"" + " total level: " + level + " with " + NumberFormat.getInstance().format(experience) + " xp";
+		return "\"" + name.replaceAll(" ", "_") + "\"" + " total level: " + level + " with "
+				+ NumberFormat.getInstance().format(experience) + " xp";
 	}
 }

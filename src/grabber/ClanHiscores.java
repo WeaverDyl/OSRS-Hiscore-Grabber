@@ -13,7 +13,6 @@ import javax.xml.ws.http.HTTPException;
 /**
  * A standalone program that ranks a list of players in order by total level
  * 
- * 
  * @author Dylan Weaver
  *
  */
@@ -31,8 +30,7 @@ public class ClanHiscores {
 	 * For the given position, connect to the hiscores page for the username and
 	 * read the data
 	 * 
-	 * @param position
-	 *            The current index of the array
+	 * @param position The current index of the array
 	 */
 	private static boolean connect(int position) {
 		// Connect to the hiscores using the username found at the position index of
