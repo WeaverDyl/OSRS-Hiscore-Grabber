@@ -20,8 +20,9 @@ public class Grabber extends Thread {
 	private static int counter; // This is used to make the output a little bit nicer
 	private static String currentLine = null; // The current line of data - null before anything is read
 	private static List<Player> players = new ArrayList<Player>(); // Stores name, experience, level data for each player
-	int threads = Runtime.getRuntime().availableProcessors(); // The number of threads to create
 	private static List<String> playerErrors = new ArrayList<>(); // Any excluded players (due to errors) will be here
+	
+	int threads = Runtime.getRuntime().availableProcessors(); // The number of threads to create
 
 	/**
 	 * For the given position, connect to the hiscores page for the username and
@@ -34,7 +35,7 @@ public class Grabber extends Thread {
 		// Connect to the hiscores using the username found at the position index of
 		// Utlity.playersList
 		String stringURL = "http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player="
-				+ Utility.playersList[position].replaceAll(" ", "_");
+				+ Utility.players[position].replaceAll(" ", "_");
 		try {
 			// Open a connection to StringUrl
 			URL url = new URL(stringURL);
@@ -44,7 +45,7 @@ public class Grabber extends Thread {
 			}
 			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			// Go to the correct line where the skill information is
-			for (int i = 0; i < Arrays.asList(Utility.SKILL_NAMES).indexOf(skill); i++) {
+			for (int i = 0; i < Arrays.asList(Utility.skills).indexOf(skill); i++) {
 				in.readLine();
 			}
 			// Read this correct line
@@ -53,10 +54,10 @@ public class Grabber extends Thread {
 			in.close();
 			return true;
 		} catch (HTTPException e) {
-			// If we 404, add it to the list of player errors and print a note about it
+			// If we 404, add it to the list of player errors and print a warning about it
 			if (e.getStatusCode() == 404) {
-				playerErrors.add(Utility.playersList[position]);
-				System.out.println("404 returned for: " + "\"" + Utility.playersList[position] + "\""
+				playerErrors.add(Utility.players[position]);
+				System.out.println("404 returned for: " + "\"" + Utility.players[position] + "\""
 						+ ". Fix this before using the printed data.");
 			}
 			return false;
@@ -76,34 +77,33 @@ public class Grabber extends Thread {
 	 */
 	private static void runGrabber(String skill) {
 		// Only continue if skill exists in the Utility.SKILL_NAMES array
-		if (checkForValidSkill(skill)) {
+		if (Utility.checkForValidSkill(skill)) {
 			System.out.println("DATA FOR " + skill.toUpperCase() + " EVENT");
 			System.out.println("Please wait while the data processes... Errors will appear directly below");
-			for (int i = 0; i < Utility.playersList.length; i++) {
+			for (int i = 0; i < Utility.players.length; i++) {
 				try {
 					// Connect to the hiscores with a reference of the current position so we know
 					// which player to process
 					if (connect(skill, i)) {
-						// Break up the current line into an array which consists of rank, level,
+						// Break up the current line into an array which consists of rank (index 0), level,
 						// experience respectively
 						String[] skillBrokenUp = currentLine.replaceAll(" ", "").split(",");
 						int level = Integer.parseInt(skillBrokenUp[1]);
-						int experience = Integer.parseInt(skillBrokenUp[2]) == -1 ? 0
-								: Integer.parseInt(skillBrokenUp[2]);
+						int experience = Integer.parseInt(skillBrokenUp[2]) == -1 ? 0 : Integer.parseInt(skillBrokenUp[2]);
 
 						// Create a new Player object which stores the current name, level and
 						// experience and add that to Players
-						Player p = new Player(Utility.playersList[i], level, experience);
+						Player p = new Player(Utility.players[i], level, experience);
 						players.add(p);
 					}
 				} catch (Exception e) {
 					// Useful in cases of a misspelled name or a name change within the clan
-					System.out.println(Utility.capitalizeFirst(Utility.playersList[i].trim() + "'s "
+					System.out.println(Utility.capitalizeFirst(Utility.players[i].trim() + "'s "
 							+ Utility.capitalizeFirst(skill) + " Experience: ERROR" + " " + e));
 				}
 			}
 		} else {
-			System.out.println("Error, invalid skill name.");
+			throw new IllegalArgumentException("Invalid skill name passed.");
 		}
 	}
 
@@ -139,22 +139,8 @@ public class Grabber extends Thread {
 		counter = 0;
 	}
 
-	/**
-	 * Checks that {@code skill} is in {@code Utility.SKILL_NAMES}
-	 * 
-	 * @param str The string to check against SKILL_NAMES
-	 */
-	static boolean checkForValidSkill(String str) {
-		for (int i = 0; i < Utility.SKILL_NAMES.length; i++) {
-			if (Utility.SKILL_NAMES[i].equalsIgnoreCase(str)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public static void main(String[] args) {
-		runGrabber("hunter");
+		runGrabber("slayer");
 
 		// Print a list of all the players that aren't included so the user is aware
 		// that the results may be incorrect

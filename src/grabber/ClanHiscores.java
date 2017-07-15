@@ -36,7 +36,7 @@ public class ClanHiscores {
 		// Connect to the hiscores using the username found at the position index of
 		// Utlity.playersList
 		String stringURL = "http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player="
-				+ Utility.playersList[position].trim().replaceAll(" ", "_");
+				+ Utility.players[position].trim().replaceAll(" ", "_");
 		try {
 			// Open a connection to StringUrl
 			URL url = new URL(stringURL);
@@ -53,9 +53,9 @@ public class ClanHiscores {
 		} catch (HTTPException e) {
 			// If we 404, add it to the list of player errors and print a note about it
 			if (e.getStatusCode() == 404) {
-				playerErrors.add(Utility.playersList[position]);
+				playerErrors.add(Utility.players[position]);
 				System.out.println(
-						"404 returned for: " + "\"" + Utility.playersList[position].replaceAll(" ", "_") + "\"");
+						"404 returned for: " + "\"" + Utility.players[position].replaceAll(" ", "_") + "\"");
 			}
 			return false;
 		} catch (Exception e) {
@@ -71,11 +71,10 @@ public class ClanHiscores {
 	private static void runGrabber() {
 		System.out.println("CLAN HISCORES");
 		System.out.println("----");
-		System.out
-				.println("Please be patient, this takes a bit. Any errors (such as a name change or incorrect username)"
+		System.out.println("Please be patient, this takes a bit. Any errors (such as a name change or invalid username)"
 						+ " will appear directly below this line.");
 		// Go through the entire list of players
-		for (int i = 0; i < Utility.playersList.length; i++) {
+		for (int i = 0; i < Utility.players.length; i++) {
 			try {
 				// Connect to the hiscores for the current index
 				if (connect(i)) {
@@ -85,7 +84,7 @@ public class ClanHiscores {
 					int experience = Integer.parseInt(skillBrokenUp[2]);
 
 					// Create a Player object and add this object to the players arrayList
-					Player p = new Player(Utility.playersList[i], level, experience);
+					Player p = new Player(Utility.players[i], level, experience);
 					players.add(p);
 				}
 			} catch (Exception e) {
@@ -96,7 +95,7 @@ public class ClanHiscores {
 		// Sort the list by level and experience using Player's compareTo method
 		Collections.sort(players, Collections.reverseOrder());
 		// We exited the loop, so we're done!
-		System.out.println("\nDONE\n");
+		System.out.println("\nDONE");
 	}
 
 	/**

@@ -9,24 +9,12 @@ package grabber;
 public final class Utility {
 
 	// An array of every skill in old school runescape
-	static final String[] SKILL_NAMES = { "overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",
+	static final String[] skills = { "overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",
 			"magic", "cooking", "woodcutting", "fletching", "fishing", "firemaking", "crafting", "smithing", "mining",
 			"herblore", "agility", "thieving", "slayer", "farming", "runecrafting", "hunter", "construction" };
 
-	// An array of every player in the clan
-	static final String[] playersList = { "1488", "karambjohn", "nosteponsnek", "daft blunt", "rackle", "uim pwc",
-			"timeofgrace", "yeetbihh", "pure impure", "shakenspear", "holly spring", "im speshl", "texman", "toti594",
-			"ludena", "layor trop", "figarothecat", "whiplash796", "picleboii", "bonghits", "itdoesnt", "the alomais",
-			"dragonsfury", "tjommyt", "luch", "clint  3", "lostatonce", "sirartorian", "powbong", "frofuzz", "yeex",
-			"thatzally", "mr zoltan", "praisekek88", "monkfromhell", "megapanda87", "not rackle", "llabnonnac",
-			"goondragon", "illegalaryan", "manlikeandy", "saucyturtle", "summonz", "masterchiefe", "the package",
-			"r y l o c k", "uzil05", "drunkendunkn", "disco bisqit", "burningpraye", "fishy man555", "fegarothecat",
-			"divorced man", "its footer", "semi vz", "derek 3 0", "wild life", "linkinpark69", "voatco", "msmapes",
-			"dots anti", "rngjesus", "impended", "end game", "quinn pks", "iron freak1", "jokerman557", "wordtm",
-			"ecthelionii", "xnotabotjkx", "zakarius", "babashook", "fruitsaladz", "geepee", "fu man brews", "peter fox",
-			"jjboy501", "robots222", "hcbong", "turtljoe", "iron sucrose", "ziekecijfers", "steve shives",
-			"thicc ghost", "fishnchips20", "puggiepanda7", "hopes gone", "thefluffster", "18oo", "hard c0ded",
-			"maclue vz", "leckel" };
+	// An array of every ranked member
+	static final String[] players = {};
 
 	/**
 	 * A private constructor to ensure this class is not subclassed or messed with
@@ -84,5 +72,19 @@ public final class Utility {
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * Checks that {@code skill} is in {@code SKILL_NAMES}
+	 * 
+	 * @param str The string to check against {@code SKILL_NAMES}
+	 */
+	static boolean checkForValidSkill(String str) {
+		for (int i = 0; i < skills.length; i++) {
+			if (skills[i].equalsIgnoreCase(str)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
