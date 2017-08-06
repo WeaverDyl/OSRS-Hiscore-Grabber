@@ -34,10 +34,10 @@ public class CalculateGains {
 	private static Integer[] levelForPlayerEnd = {};
 
 	// The difference, or gained experience, of each player
-	private static Integer[] experienceGained = new Integer[Utility.players.length];
+	private static Integer[] experienceGained = new Integer[Utility.playersFinal.length];
 
 	// The difference, or gained levels, of each player
-	private static Integer[] levelsGained = new Integer[Utility.players.length];
+	private static Integer[] levelsGained = new Integer[Utility.playersFinal.length];
 
 	/**
 	 * Takes the difference of an array containing ending values and an array containing beginning values
@@ -51,7 +51,7 @@ public class CalculateGains {
 	 */
 	private static void calculateTotalGains(Integer[] beginning, Integer[] end, Integer[] destination)
 			throws ArraySizeUnequalException {
-		if (Utility.areSameLength(Utility.players, beginning, end)) {
+		if (Utility.areSameLength(Utility.playersFinal, beginning, end)) {
 			for (int i = 0; i < end.length; i++) {
 				destination[i] = end[i] - beginning[i];
 			}
@@ -76,8 +76,8 @@ public class CalculateGains {
 		System.out.println("Total gains from every member: ");
 
 		// Go through the playerList, creating a new Player object for each player in the array
-		for (int i = 0; i < Utility.players.length; i++) {
-			Player p = new Player(Utility.players[i], levelsGained[i], experienceGained[i]);
+		for (int i = 0; i < Utility.playersFinal.length; i++) {
+			Player p = new Player(Utility.playersFinal[i], levelsGained[i], experienceGained[i]);
 			playerGains.add(p);
 		}
 
@@ -97,7 +97,8 @@ public class CalculateGains {
 		Collections.sort(playerGains, new PlayerLevelGainComparator().reversed());
 		for (Player list : playerGains) {
 			System.out.println(levelPosition + Utility.getPositionSuffix(levelPosition) + "\""
-					+ list.getName().replace(" ", "_") + "\"" + " with: " + list.getLevel() + " levels.");
+					+ list.getName().replace(" ", "_") + "\"" + " with: " + list.getLevel() 
+					+ (list.getLevel() != 1 ? " levels." : " level."));
 			// Increment the position to maintain correct rankings
 			levelPosition++;
 		}

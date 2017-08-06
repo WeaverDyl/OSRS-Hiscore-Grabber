@@ -21,8 +21,6 @@ public class Grabber extends Thread {
 	private static String currentLine = null; // The current line of data - null before anything is read
 	private static List<Player> players = new ArrayList<Player>(); // Stores name, experience, level data for each player
 	private static List<String> playerErrors = new ArrayList<>(); // Any excluded players (due to errors) will be here
-	
-	int threads = Runtime.getRuntime().availableProcessors(); // The number of threads to create
 
 	/**
 	 * For the given position, connect to the hiscores page for the username and
@@ -35,7 +33,7 @@ public class Grabber extends Thread {
 		// Connect to the hiscores using the username found at the position index of
 		// Utlity.playersList
 		String stringURL = "http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player="
-				+ Utility.players[position].replaceAll(" ", "_");
+				+ Utility.playersFinal[position].replaceAll(" ", "_");
 		try {
 			// Open a connection to StringUrl
 			URL url = new URL(stringURL);
@@ -56,8 +54,8 @@ public class Grabber extends Thread {
 		} catch (HTTPException e) {
 			// If we 404, add it to the list of player errors and print a warning about it
 			if (e.getStatusCode() == 404) {
-				playerErrors.add(Utility.players[position]);
-				System.out.println("404 returned for: " + "\"" + Utility.players[position] + "\""
+				playerErrors.add(Utility.playersFinal[position]);
+				System.out.println("404 returned for: " + "\"" + Utility.playersFinal[position] + "\""
 						+ ". Fix this before using the printed data.");
 			}
 			return false;
@@ -80,7 +78,7 @@ public class Grabber extends Thread {
 		if (Utility.checkForValidSkill(skill)) {
 			System.out.println("DATA FOR " + skill.toUpperCase() + " EVENT");
 			System.out.println("Please wait while the data processes... Errors will appear directly below");
-			for (int i = 0; i < Utility.players.length; i++) {
+			for (int i = 0; i < Utility.playersFinal.length; i++) {
 				try {
 					// Connect to the hiscores with a reference of the current position so we know
 					// which player to process
@@ -93,13 +91,12 @@ public class Grabber extends Thread {
 
 						// Create a new Player object which stores the current name, level and
 						// experience and add that to Players
-						Player p = new Player(Utility.players[i], level, experience);
+						Player p = new Player(Utility.playersFinal[i], level, experience);
 						players.add(p);
 					}
 				} catch (Exception e) {
-					// Useful in cases of a misspelled name or a name change within the clan
-					System.out.println(Utility.capitalizeFirst(Utility.players[i].trim() + "'s "
-							+ Utility.capitalizeFirst(skill) + " Experience: ERROR" + " " + e));
+					System.out.println(Utility.playersFinal[i] + "'s "
+							+ skill + " Experience: ERROR" + " " + e);
 				}
 			}
 		} else {
@@ -138,10 +135,8 @@ public class Grabber extends Thread {
 		// Reset the counter
 		counter = 0;
 	}
-
-	public static void main(String[] args) {
-		runGrabber("slayer");
-
+	
+	private static void printErrors() {
 		// Print a list of all the players that aren't included so the user is aware
 		// that the results may be incorrect
 		if (!playerErrors.isEmpty()) {
@@ -150,6 +145,13 @@ public class Grabber extends Thread {
 				System.out.println(players.replace(" ", "_"));
 			}
 		}
+	}
+
+	public static void main(String[] args) {
+		runGrabber("slayer");
+		
+		//print the names we had trouble grabbing data for
+		printErrors();
 
 		System.out.println("\n--- Experience Data ---");
 		printExperience();
