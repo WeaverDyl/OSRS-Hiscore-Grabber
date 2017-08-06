@@ -14,17 +14,7 @@ public final class Utility {
 			"herblore", "agility", "thieving", "slayer", "farming", "runecrafting", "hunter", "construction" };
 
 	// An array of every ranked member
-		static final String[] playersFinal = { "layor trop", "karambjohn", "nosteponsnek", "daft blunts", "rackle", "goondragon",
-				"msmapes", "ecthelionii", "itiassacre", "uim pwc", "the package", "dragonsfury", "1488", "holly spring", "speshl",
-				"texman", "toti594", "ludena", "figarothecat", "whiplash796", "picleboii", "bonghits", "itdoesnt", "the alomais", "tjommyt",
-				"luch", "clint  3", "lostatonce", "sirartorian", "frofuzz", "yeex", "thatzally", "mr zoltan", "praisekek88",
-				"monkfromhell", "megapanda87", "illegalaryan", "manlikeandy", "saucyturtle", "summonz", "masterchiefe", "r y l o c k",
-				"uzil05", "drunkendunkn", "disco bisqit", "burningpraye", "fishy man555", "divorced man", "its footer", "semi vz", "derek 3 0",
-				"wild life", "linkinpark69", "voatco", "dots anti", "jokerman557", "wordtm", "zakarius", "babashook", "fruitsaladz", "geepee",
-				"capt balzak", "jjboy501", "robots222", "timeofgrace", "iron nasdaq", "ziekecijfers", "steve shives", "thicc ghost", "hopes gone",
-				"18oo", "shakenspear", "bennie", "maclue vz", "megas deus", "thatlilium", "hapnin", "leckel", "el veneno 19", "lordaki",
-				"l  s u", "silent_now", "xtra goofy", "irishfister", "kashflow", "freightxtank", "grypphus", "osse o", "haychedizzle", "very flacid",
-				"valkyrien", "trickidy", "ktfowns", "bensonhedges" };
+		static final String[] playersFinal = {};
 
 	/**
 	 * A private constructor to ensure this class is not subclassed or messed with
