@@ -1,7 +1,7 @@
 package grabber;
 
 /**
- * An exception that is thrown when we are trying to compare two arrays whose lengths are not eqwual
+ * An exception that is thrown when we are trying to compare two arrays whose lengths are not equal
  * 
  * @author Dylan Weaver
  *
