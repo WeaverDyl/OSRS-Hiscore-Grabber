@@ -1,5 +1,7 @@
 # OSRS-HISCORE-GRABBER
 
+# THIS PROJECT HAS BEEN DEPRECATED IN FAVOR OF [OSRS-SKILL-TRACKER](https://github.com/WeaverDyl/OSRS-Skill-Tracker).
+
 ## WHAT THIS IS
 
 This is a program serving two main purposes, Both of which deal with the hiscore system of the game Old School RuneScape.
